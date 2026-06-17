@@ -1,0 +1,36 @@
+:root {
+  --cream: #faf6ef;
+  --brown-dk: #2c1a0e;
+  --brown-md: #5c3d1e;
+  --brown-lt: #a0673a;
+  --gold: #d4a853;
+  --gold-lt: #f0d9a8;
+  --green: #3a6b4a;
+  --red: #b5392a;
+  --surface: #ffffff;
+  --border: #e8ddd0;
+  --text-main: #2c1a0e;
+  --text-sub: #7a5c3e;
+  --radius: 10px;
+  --shadow: 0 2px 12px rgba(44, 26, 14, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --code-bg: #1f2028;
+    --accent: #c084fc;
+    --accent-bg: rgba(192, 132, 252, 0.15);
+    --accent-border: rgba(192, 132, 252, 0.5);
+    --social-bg: rgba(47, 48, 58, 0.5);
+    --shadow:
+      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  }
+
+  #social .button-icon {
+    filter: invert(1) brightness(2);
+  }
+}

@@ -1,0 +1,51 @@
+.topBar {
+  background: var(--brown-dk);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 52px;
+  flex-shrink: 0;
+}
+.topBarLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.logo {
+  font-family: "Fraunces", serif;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  color: var(--gold);
+  cursor: pointer;
+}
+.topbarTag {
+  font-size: 11px;
+  background: var(--brown-md);
+  color: var(--gold-lt);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.topbarRight {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 13px;
+  color: #c8b49a;
+}
+.topbarRight span b {
+  color: #fff;
+}
+.btnFechar {
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+  padding: 6px 14px;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}

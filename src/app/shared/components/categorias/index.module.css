@@ -1,0 +1,28 @@
+.categorias {
+  display: flex;
+  gap: 7px;
+  margin-bottom: 16px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.categorias::-webkit-scrollbar {
+  display: none;
+}
+.cat {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text-sub);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.ativo {
+  background: var(--brown-dk);
+  border-color: var(--brown-dk);
+  color: #fff;
+}

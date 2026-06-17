@@ -1,0 +1,26 @@
+.itemQtd {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btnQtd {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  font-size: 14px;
+  color: var(--brown-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  line-height: 1;
+}
+.qtdNum {
+  font-size: 13px;
+  font-weight: 700;
+  min-width: 18px;
+  text-align: center;
+}

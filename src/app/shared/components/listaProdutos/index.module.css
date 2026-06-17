@@ -1,0 +1,52 @@
+.produtoCard {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+.produtoCard:hover {
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px rgba(212, 168, 83, 0.18);
+}
+.produtoCardSemEstoque {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.prodEmoji {
+  font-size: 30px;
+}
+.prodNome {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-main);
+  text-align: center;
+  line-height: 1.3;
+}
+.prodPreco {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brown-md);
+}
+.prodEstoqueBadge {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  font-size: 9px;
+  background: var(--gold-lt);
+  color: var(--brown-md);
+  padding: 1px 5px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.prodEstoqueBadgeBaixo {
+  background: #fdddd9;
+  color: var(--red);
+}
