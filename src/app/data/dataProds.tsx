@@ -14,7 +14,7 @@ export const listaDeProdutos: Produto[] = [
     id: 2,
     nome: "Croissant",
     categoria: "Salgados",
-    estoque: 20,
+    estoque: 5,
     unidade: "unidade",
     valorUn: "5,5",
     emoji: "🥐 ",

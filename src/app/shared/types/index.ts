@@ -8,4 +8,10 @@ export interface Produto {
   emoji: string;
 }
 
+export interface ProdutoProv {
+  produto: Produto[];
+  loading: boolean;
+  erro: string | null;
+  refetch: () => void;
+}
 //export type Categorias = "Paes" | "Salgados" | "Doces" | "Bebidas";

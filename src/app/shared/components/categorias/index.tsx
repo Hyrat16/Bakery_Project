@@ -2,12 +2,12 @@ import styles from "./index.module.css";
 
 export interface ListagemProdutosProps {
   categoriaAtiva: string;
-  setCategoriaAtiva: any;
+  chamadaCategoria: (categoria: string) => void;
 }
 
 export const Categorias = ({
   categoriaAtiva,
-  setCategoriaAtiva,
+  chamadaCategoria,
 }: ListagemProdutosProps) => {
   const listaCategorias = [
     "Todos",
@@ -24,7 +24,7 @@ export const Categorias = ({
         <div
           key={categoria}
           className={`${styles.cat} ${categoriaAtiva === categoria ? styles.ativo : ""}`}
-          onClick={() => setCategoriaAtiva(categoria)}
+          onClick={() => chamadaCategoria(categoria)}
         >
           {categoria}
         </div>

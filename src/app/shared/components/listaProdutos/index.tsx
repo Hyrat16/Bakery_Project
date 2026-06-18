@@ -33,28 +33,39 @@ export const ListagemProdutos = ({
 
   return (
     <>
-      {produtosFiltrados.map((produtos) => (
-        <div
-          key={produtos.id}
-          className={styles.produtoCard}
-          onClick={() =>
-            produtos.estoque != 0
-              ? teste1(produtos)
-              : console.log("Produto sem estoque")
-          }
-        >
-          <span
-            className={`${styles.prodEstoqueBadge} ${produtos.estoque <= 5 ? styles.prodEstoqueBadgeBaixo : ""} && ${produtos.estoque == 0 ? styles.produtoCardSemEstoque : ""}`}
+      {produtosFiltrados.map((produtos) => {
+        let classFinal = styles.produtoCard;
+        let classSpan = styles.prodEstoqueBadge;
+
+        if (produtos.estoque === 0) {
+          classFinal += ` ${styles.produtoCardSemEstoque} `;
+        }
+
+        if (produtos.estoque <= 10) {
+          classSpan += ` ${styles.prodEstoqueBadgeBaixo} `;
+        }
+
+        return (
+          <div
+            key={produtos.id}
+            className={classFinal}
+            onClick={() =>
+              produtos.estoque != 0
+                ? teste1(produtos)
+                : console.log("Produto sem estoque")
+            }
           >
-            {produtos.estoque} {produtos.unidade}
-          </span>
-          <div className={styles.prodEmoji}>
-            {obterEmoji(produtos.categoria)}
+            <span className={classSpan}>
+              {produtos.estoque} {produtos.unidade}
+            </span>
+            <div className={styles.prodEmoji}>
+              {obterEmoji(produtos.categoria)}
+            </div>
+            <div className={styles.prodNome}>{produtos.nome}</div>
+            <div className={styles.prodPreco}>R$ {produtos.valorUn}</div>
           </div>
-          <div className={styles.prodNome}>{produtos.nome}</div>
-          <div className={styles.prodPreco}>R$ {produtos.valorUn}</div>
-        </div>
-      ))}
+        );
+      })}
     </>
   );
 };

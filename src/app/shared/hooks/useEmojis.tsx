@@ -3,7 +3,7 @@ export const useCategoriaEmoji = () => {
     Paes: "🍞",
     Salgados: "🥐",
     Doces: "🍰",
-    Bebidas: "☕",
+    Bebidas: "🥤",
   };
 
   const obterEmoji = (categoria: string): string => {
