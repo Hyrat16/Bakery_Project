@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ListProdContext } from ".";
-import { listaDeProdutos } from "../../data/dataProds";
+import { listProducts } from "../../data/dataProds";
 import { type Produto } from "../types";
 
 interface provProdProps {
@@ -8,11 +8,11 @@ interface provProdProps {
 }
 
 export const ListProdProvider = ({ children }: provProdProps) => {
-  const [produtos, setProdutos] = useState<Produto[]>(listaDeProdutos);
+  const [produtos, setProdutos] = useState<Produto[]>(listProducts);
   const [loading] = useState(false);
   const [erro] = useState<string | null>(null);
 
-  const refetch = () => setProdutos(listaDeProdutos);
+  const refetch = () => setProdutos(listProducts);
 
   return (
     <ListProdContext.Provider

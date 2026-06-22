@@ -1,6 +1,6 @@
 import { type Produto } from "../shared/types";
 
-export const listaDeProdutos: Produto[] = [
+export const listProducts: Produto[] = [
   {
     id: 1,
     nome: "Pão Francês",
@@ -272,3 +272,5 @@ export const listaDeProdutos: Produto[] = [
     emoji: "🧁",
   },
 ];
+
+

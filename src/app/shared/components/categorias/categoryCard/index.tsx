@@ -1,0 +1,29 @@
+import styles from "./index.module.css";
+import { type Dispatch, type SetStateAction } from "react";
+
+export interface ListProductsProps {
+  categoryActive: string;
+  activeCall: Dispatch<SetStateAction<string>>;
+  category: string;
+}
+
+export const CardCategory = ({
+  categoryActive,
+  activeCall,
+  category,
+}: ListProductsProps) => {
+  const isActive = categoryActive === category;
+
+  return (
+    <>
+      <div className={styles.categories}>
+        <div
+          className={`${styles.cat} ${isActive ? styles.active : ""}`}
+          onClick={() => activeCall(category)}
+        >
+          {category}
+        </div>
+      </div>
+    </>
+  );
+};

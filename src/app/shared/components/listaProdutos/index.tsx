@@ -1,24 +1,19 @@
-import styles from "./index.module.css";
 import { useProdutos } from "../../contexts";
 import { type Produto } from "../../types";
-import { useCategoriaEmoji } from "../../hooks/useEmojis";
+import { ProductCard } from "./produtoCard";
 
 export interface ListagemProdutosProps {
   categoriaAtiva: string;
   produtoAtivo: string;
+  onSelecionarProduto?: (produto: Produto) => void;
 }
 
-const teste1 = (produto: Produto) => {
-  console.log(produto);
-  return produto;
-};
-
-export const ListagemProdutos = ({
+export const ListProdutos = ({
   categoriaAtiva,
   produtoAtivo,
+  onSelecionarProduto,
 }: ListagemProdutosProps) => {
   const { produto } = useProdutos();
-  const { obterEmoji } = useCategoriaEmoji();
 
   const produtosFiltrados = produto.filter((produto) => {
     if (produtoAtivo.length !== 0) {
@@ -31,41 +26,20 @@ export const ListagemProdutos = ({
     return produto.categoria === categoriaAtiva;
   });
 
+  const handleSelecionar = (produto: Produto) => {
+    console.log(produto);
+    onSelecionarProduto?.(produto);
+  };
+
   return (
     <>
-      {produtosFiltrados.map((produtos) => {
-        let classFinal = styles.produtoCard;
-        let classSpan = styles.prodEstoqueBadge;
-
-        if (produtos.estoque === 0) {
-          classFinal += ` ${styles.produtoCardSemEstoque} `;
-        }
-
-        if (produtos.estoque <= 10) {
-          classSpan += ` ${styles.prodEstoqueBadgeBaixo} `;
-        }
-
-        return (
-          <div
-            key={produtos.id}
-            className={classFinal}
-            onClick={() =>
-              produtos.estoque != 0
-                ? teste1(produtos)
-                : console.log("Produto sem estoque")
-            }
-          >
-            <span className={classSpan}>
-              {produtos.estoque} {produtos.unidade}
-            </span>
-            <div className={styles.prodEmoji}>
-              {obterEmoji(produtos.categoria)}
-            </div>
-            <div className={styles.prodNome}>{produtos.nome}</div>
-            <div className={styles.prodPreco}>R$ {produtos.valorUn}</div>
-          </div>
-        );
-      })}
+      {produtosFiltrados.map((produto) => (
+        <ProductCard
+          key={produto.id}
+          produto={produto}
+          onSelect={handleSelecionar}
+        />
+      ))}
     </>
   );
 };

@@ -1,33 +1,25 @@
-import styles from "./index.module.css";
+import { CardCategory } from "./categoryCard";
+import { useCategory } from "../../hooks/useCategory";
+import styles from "./categoryCard/index.module.css";
+import { type Dispatch, type SetStateAction } from "react";
 
-export interface ListagemProdutosProps {
-  categoriaAtiva: string;
-  chamadaCategoria: (categoria: string) => void;
+interface ProductsProps {
+  categoryActive: string;
+  activeCall: Dispatch<SetStateAction<string>>;
 }
 
-export const Categorias = ({
-  categoriaAtiva,
-  chamadaCategoria,
-}: ListagemProdutosProps) => {
-  const listaCategorias = [
-    "Todos",
-    "Paes",
-    "Salgados",
-    "Doces",
-    "Bebidas",
-    "Frios",
-  ];
+export const CategoryList = ({ categoryActive, activeCall }: ProductsProps) => {
+  const categories = useCategory();
 
   return (
-    <div className={styles.categorias}>
-      {listaCategorias.map((categoria) => (
-        <div
-          key={categoria}
-          className={`${styles.cat} ${categoriaAtiva === categoria ? styles.ativo : ""}`}
-          onClick={() => chamadaCategoria(categoria)}
-        >
-          {categoria}
-        </div>
+    <div className={styles.categories}>
+      {categories.map((category) => (
+        <CardCategory
+          key={category}
+          category={category}
+          categoryActive={categoryActive}
+          activeCall={activeCall}
+        />
       ))}
     </div>
   );

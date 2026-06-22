@@ -1,5 +1,5 @@
 import styles from "./index.module.css";
-import { useClock } from "../../../functions/hourFunctions/hour";
+import { useClock } from "../../hooks/useClock";
 import { useNavigate } from "react-router-dom";
 
 /* 

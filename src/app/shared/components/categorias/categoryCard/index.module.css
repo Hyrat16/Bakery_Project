@@ -1,4 +1,4 @@
-.categorias {
+.categories {
   display: flex;
   gap: 7px;
   margin-bottom: 16px;
@@ -6,7 +6,7 @@
   overflow-x: auto;
   scrollbar-width: none;
 }
-.categorias::-webkit-scrollbar {
+.categories::-webkit-scrollbar {
   display: none;
 }
 .cat {
@@ -21,7 +21,7 @@
   white-space: nowrap;
   transition: all 0.15s;
 }
-.ativo {
+.active {
   background: var(--brown-dk);
   border-color: var(--brown-dk);
   color: #fff;

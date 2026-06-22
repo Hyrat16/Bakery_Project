@@ -1,13 +1,21 @@
 import { useState } from "react";
-import { Categorias } from "../../shared/components/categorias";
-import { ListagemProdutos } from "../../shared/components/listaProdutos";
+import { CategoryList } from "../../shared/components/categorias";
+import { ListProdutos } from "../../shared/components/listaProdutos";
 import { Botoes } from "../../shared/components/botoesMenuVenda";
-import { buscaProdutoAtivo } from "../../functions/pesquisas/pesquisa";
+import { type Produto } from "../../shared/types";
+
+//import { buscaProdutoAtivo } from "../../functions/pesquisas/pesquisa";
 import "./index.css";
 
 export const Home = () => {
-  const [categoriaAtiva, setCategoriaAtiva] = useState("Todos");
-  const [produtoAtivo, setProdutoAtivo] = useState<string>("");
+  const [activeCategory, setactiveCategory] = useState("Todos");
+  const [productActive, setproductActive] = useState<string>("");
+  const [currentSalesList, setcurrentSalesList] = useState<Produto[]>([]);
+
+  const handleAdicionarProduto = (produto: Produto) => {
+    setcurrentSalesList((prev) => [...prev, produto]);
+    return currentSalesList;
+  };
 
   return (
     <>
@@ -18,32 +26,54 @@ export const Home = () => {
             type="text"
             placeholder="Buscar produto..."
             onChange={(e) => {
-              setProdutoAtivo(e.target.value);
-              buscaProdutoAtivo(produtoAtivo);
+              setproductActive(e.target.value);
+              //buscaProdutoAtivo(productActive);
             }}
           />
         </div>
 
-        <Categorias
-          categoriaAtiva={categoriaAtiva}
-          setCategoriaAtiva={setCategoriaAtiva}
+        <CategoryList
+          categoryActive={activeCategory}
+          activeCall={setactiveCategory}
         />
 
         <div className="grid-produtos">
-          <ListagemProdutos
-            categoriaAtiva={categoriaAtiva}
-            produtoAtivo={produtoAtivo}
+          <ListProdutos
+            categoriaAtiva={activeCategory}
+            produtoAtivo={productActive}
+            onSelecionarProduto={handleAdicionarProduto}
           />
         </div>
       </section>
 
+      {console.log(handleAdicionarProduto)}
       <aside className="painel-carrinho">
         <div className="carrinho-header">
           <h2>Venda atual</h2>
-          <span className="badge-itens">3 itens</span>
+          <span className="badge-itens">{[currentSalesList].length | 0}</span>
         </div>
 
         <div className="carrinho-lista">
+          <div className="item-venda">
+            <div className="item-emoji">🥖</div>
+            <div className="item-info">
+              <div className="item-nome">Pão Francês</div>
+              <div className="item-unit">R$ 0,75 / un</div>
+            </div>
+            <Botoes valueItens={5} />
+            <div className="item-total">R$ 4,50</div>
+          </div>
+
+          <div className="item-venda">
+            <div className="item-emoji">🥖</div>
+            <div className="item-info">
+              <div className="item-nome">Pão Francês</div>
+              <div className="item-unit">R$ 0,75 / un</div>
+            </div>
+            <Botoes valueItens={5} />
+            <div className="item-total">R$ 4,50</div>
+          </div>
+
           <div className="item-venda">
             <div className="item-emoji">🥖</div>
             <div className="item-info">
