@@ -1,6 +1,7 @@
-import { useProdutos } from "../../contexts";
+import { useProducts } from "../../hooks";
 import { type Produto } from "../../types";
-import { ProductCard } from "./produtoCard";
+import { ProductCard } from "./productCard";
+import { useSalesItens } from "../../hooks";
 
 export interface ListagemProdutosProps {
   categoriaAtiva: string;
@@ -11,9 +12,9 @@ export interface ListagemProdutosProps {
 export const ListProdutos = ({
   categoriaAtiva,
   produtoAtivo,
-  onSelecionarProduto,
 }: ListagemProdutosProps) => {
-  const { produto } = useProdutos();
+  const { produto } = useProducts();
+  const { handleAdicionarProduto } = useSalesItens();
 
   const produtosFiltrados = produto.filter((produto) => {
     if (produtoAtivo.length !== 0) {
@@ -27,8 +28,8 @@ export const ListProdutos = ({
   });
 
   const handleSelecionar = (produto: Produto) => {
-    console.log(produto);
-    onSelecionarProduto?.(produto);
+    console.log()
+    handleAdicionarProduto?.(produto);
   };
 
   return (

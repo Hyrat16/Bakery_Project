@@ -1,21 +1,14 @@
 import { useState } from "react";
-import { CategoryList } from "../../shared/components/categorias";
-import { ListProdutos } from "../../shared/components/listaProdutos";
-import { Botoes } from "../../shared/components/botoesMenuVenda";
-import { type Produto } from "../../shared/types";
-
-//import { buscaProdutoAtivo } from "../../functions/pesquisas/pesquisa";
+import { CategoryList } from "../../shared/components/categories";
+import { ListProdutos } from "../../shared/components/listProducts";
+import { Buttons } from "../../shared/components/menuSale/buttons";
+import { useSalesItens } from "../../shared/hooks";
 import "./index.css";
 
 export const Home = () => {
-  const [activeCategory, setactiveCategory] = useState("Todos");
+  const [activeCategory, setactiveCategory] = useState<string>("Todos");
   const [productActive, setproductActive] = useState<string>("");
-  const [currentSalesList, setcurrentSalesList] = useState<Produto[]>([]);
-
-  const handleAdicionarProduto = (produto: Produto) => {
-    setcurrentSalesList((prev) => [...prev, produto]);
-    return currentSalesList;
-  };
+  const { currentSalesList, handleAdicionarProduto } = useSalesItens();
 
   return (
     <>
@@ -46,11 +39,12 @@ export const Home = () => {
         </div>
       </section>
 
-      {console.log(handleAdicionarProduto)}
+      {console.log(currentSalesList)}
+
       <aside className="painel-carrinho">
         <div className="carrinho-header">
           <h2>Venda atual</h2>
-          <span className="badge-itens">{[currentSalesList].length | 0}</span>
+          <span className="badge-itens">{currentSalesList.length | 0}</span>
         </div>
 
         <div className="carrinho-lista">
@@ -60,7 +54,7 @@ export const Home = () => {
               <div className="item-nome">Pão Francês</div>
               <div className="item-unit">R$ 0,75 / un</div>
             </div>
-            <Botoes valueItens={5} />
+            <Buttons valueItens={5} />
             <div className="item-total">R$ 4,50</div>
           </div>
 
@@ -70,38 +64,8 @@ export const Home = () => {
               <div className="item-nome">Pão Francês</div>
               <div className="item-unit">R$ 0,75 / un</div>
             </div>
-            <Botoes valueItens={5} />
+            <Buttons valueItens={5} />
             <div className="item-total">R$ 4,50</div>
-          </div>
-
-          <div className="item-venda">
-            <div className="item-emoji">🥖</div>
-            <div className="item-info">
-              <div className="item-nome">Pão Francês</div>
-              <div className="item-unit">R$ 0,75 / un</div>
-            </div>
-            <Botoes valueItens={5} />
-            <div className="item-total">R$ 4,50</div>
-          </div>
-
-          <div className="item-venda">
-            <div className="item-emoji">☕</div>
-            <div className="item-info">
-              <div className="item-nome">Café Expresso</div>
-              <div className="item-unit">R$ 4,00 / un</div>
-            </div>
-            <Botoes valueItens={5} />
-            <div className="item-total">R$ 8,00</div>
-          </div>
-
-          <div className="item-venda">
-            <div className="item-emoji">🥐</div>
-            <div className="item-info">
-              <div className="item-nome">Croissant</div>
-              <div className="item-unit">R$ 5,50 / un</div>
-            </div>
-            <Botoes valueItens={5} />
-            <div className="item-total">R$ 5,50</div>
           </div>
         </div>
 

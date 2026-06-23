@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ListProdContext } from ".";
+import { ListProdContext } from "../hooks";
 import { listProducts } from "../../data/dataProds";
 import { type Produto } from "../types";
 
