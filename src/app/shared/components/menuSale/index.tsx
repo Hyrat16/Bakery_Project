@@ -1,35 +1,14 @@
-import { type Produto, type ProductCart } from "../../types";
+import { CardSaleItem } from "./cardSalemItem";
+import { useSalesItens } from "../../hooks";
 
+export const SalesItens = () => {
+  const { currentSalesList } = useSalesItens();
 
-
-/* 
-<div className="item-venda">
-            <div className="item-emoji">🥖</div>
-            <div className="item-info">
-              <div className="item-nome">Pão Francês</div>
-              <div className="item-unit">R$ 0,75 / un</div>
-            </div>
-            <Buttons valueItens={5} />
-            <div className="item-total">R$ 4,50</div>
-          </div>
-
-*/
-export const CardSaleItem = (prods : ProductCart) => {
-
-<div className="item-venda">
-            <div className="item-emoji">🥖</div>
-            <div className="item-info">
-              <div className="item-nome">{prods.nome}</div>
-              <div className="item-unit">`${}``</div>
-            </div>
-            <Buttons valueItens={5} />
-            <div className="item-total">R$ 4,50</div>
-          </div>
-
-
-
-
-    return (
-
-    )
-}  
+  return (
+    <>
+      {currentSalesList.map((p) => (
+        <CardSaleItem key={p.id} prods={p} />
+      ))}
+    </>
+  );
+};

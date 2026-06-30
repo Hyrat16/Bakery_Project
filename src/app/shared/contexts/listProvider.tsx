@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { ListProdContext } from "../hooks";
 import { listProducts } from "../../data/dataProds";
-import { type Produto } from "../types";
+import { type Product } from "../types";
 
 interface provProdProps {
   children: React.ReactNode;
 }
 
 export const ListProdProvider = ({ children }: provProdProps) => {
-  const [produtos, setProdutos] = useState<Produto[]>(listProducts);
+  const [produtos, setProdutos] = useState<Product[]>(listProducts);
   const [loading] = useState(false);
   const [erro] = useState<string | null>(null);
 

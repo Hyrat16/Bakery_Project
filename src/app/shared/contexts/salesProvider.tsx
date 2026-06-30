@@ -1,4 +1,4 @@
-import { type ProductCart, type Produto } from "../types";
+import { type ProductCart, type Product } from "../types";
 import { useState } from "react";
 import { SalesItenscontext } from "../hooks";
 
@@ -9,7 +9,7 @@ interface ProductProps {
 export const SalesItensProvider = ({ children }: ProductProps) => {
   const [currentSalesList, setcurrentSalesList] = useState<ProductCart[]>([]);
 
-  const handleAdicionarProduto = (produto: Produto) => {
+  const handleAdicionarProduto = (produto: Product) => {
     setcurrentSalesList((prev) => {
       const jaExiste = prev.find((p) => p.id === produto.id);
 
@@ -23,7 +23,7 @@ export const SalesItensProvider = ({ children }: ProductProps) => {
     });
   };
 
-  const removerProduto = (id: Produto["id"]) => {
+  const removerProduto = (id: Product["id"]) => {
     setcurrentSalesList((prev) => {
       const item = prev.find((p) => p.id === id);
 
@@ -39,6 +39,12 @@ export const SalesItensProvider = ({ children }: ProductProps) => {
     });
   };
 
+  const updateItem = (id: Product["id"], newQuantity: number) => {
+    setcurrentSalesList((prev) =>
+      prev.map((p) => (p.id === id ? { ...p, quantidade: newQuantity } : p)),
+    );
+  };
+
   const limparCarrinho = () => setcurrentSalesList([]);
 
   return (
@@ -48,6 +54,7 @@ export const SalesItensProvider = ({ children }: ProductProps) => {
         handleAdicionarProduto,
         removerProduto,
         limparCarrinho,
+        updateItem,
       }}
     >
       {children}

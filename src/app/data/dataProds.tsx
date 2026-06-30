@@ -1,6 +1,6 @@
-import { type Produto } from "../shared/types";
+import { type Product } from "../shared/types";
 
-export const listProducts: Produto[] = [
+export const listProducts: Product[] = [
   {
     id: 1,
     nome: "Pão Francês",
@@ -16,7 +16,7 @@ export const listProducts: Produto[] = [
     categoria: "Salgados",
     estoque: 5,
     unidade: "unidade",
-    valorUn: "5,5",
+    valorUn: "5.5",
     emoji: "🥐 ",
   },
   {
@@ -34,7 +34,7 @@ export const listProducts: Produto[] = [
     categoria: "Bebidas",
     estoque: 48,
     unidade: "unidade",
-    valorUn: "3,5",
+    valorUn: "3.5",
     emoji: "☕ ",
   },
   {
@@ -61,7 +61,7 @@ export const listProducts: Produto[] = [
     categoria: "Paes",
     estoque: 25,
     unidade: "unidade",
-    valorUn: "9,5",
+    valorUn: "9.5",
     emoji: "🍞",
   },
   {
@@ -97,7 +97,7 @@ export const listProducts: Produto[] = [
     categoria: "Doces",
     estoque: 22,
     unidade: "unidade",
-    valorUn: "6,5",
+    valorUn: "6.5",
     emoji: "🍩",
   },
   {
@@ -106,7 +106,7 @@ export const listProducts: Produto[] = [
     categoria: "Doces",
     estoque: 15,
     unidade: "unidade",
-    valorUn: "7,5",
+    valorUn: "7.5",
     emoji: "🍩",
   },
   {
@@ -151,7 +151,7 @@ export const listProducts: Produto[] = [
     categoria: "Paes",
     estoque: 30,
     unidade: "unidade",
-    valorUn: "4,5",
+    valorUn: "4.5",
     emoji: "🥯",
   },
   {
@@ -160,7 +160,7 @@ export const listProducts: Produto[] = [
     categoria: "Salgados",
     estoque: 14,
     unidade: "unidade",
-    valorUn: "6,5",
+    valorUn: "6.5",
     emoji: "🥐",
   },
   {
@@ -169,7 +169,7 @@ export const listProducts: Produto[] = [
     categoria: "Salgados",
     estoque: 25,
     unidade: "unidade",
-    valorUn: "5,5",
+    valorUn: "5.5",
     emoji: "🥧",
   },
   {
@@ -205,7 +205,7 @@ export const listProducts: Produto[] = [
     categoria: "Doces",
     estoque: 12,
     unidade: "unidade",
-    valorUn: "8,5",
+    valorUn: "8.5",
     emoji: "🍮",
   },
   {
@@ -214,7 +214,7 @@ export const listProducts: Produto[] = [
     categoria: "Bebidas",
     estoque: 45,
     unidade: "unidade",
-    valorUn: "4,5",
+    valorUn: "4.5",
     emoji: "☕",
   },
   {
@@ -272,5 +272,3 @@ export const listProducts: Produto[] = [
     emoji: "🧁",
   },
 ];
-
-

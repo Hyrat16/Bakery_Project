@@ -1,12 +1,12 @@
 import { useProducts } from "../../hooks";
-import { type Produto } from "../../types";
+import { type Product } from "../../types";
 import { ProductCard } from "./productCard";
 import { useSalesItens } from "../../hooks";
 
 export interface ListagemProdutosProps {
   categoriaAtiva: string;
   produtoAtivo: string;
-  onSelecionarProduto?: (produto: Produto) => void;
+  onSelecionarProduto?: (produto: Product) => void;
 }
 
 export const ListProdutos = ({
@@ -27,18 +27,13 @@ export const ListProdutos = ({
     return produto.categoria === categoriaAtiva;
   });
 
-  const handleSelecionar = (produto: Produto) => {
-    console.log()
-    handleAdicionarProduto?.(produto);
-  };
-
   return (
     <>
       {produtosFiltrados.map((produto) => (
         <ProductCard
           key={produto.id}
           produto={produto}
-          onSelect={handleSelecionar}
+          onSelect={handleAdicionarProduto}
         />
       ))}
     </>

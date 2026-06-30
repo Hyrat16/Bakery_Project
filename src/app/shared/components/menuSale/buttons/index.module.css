@@ -21,6 +21,7 @@
 .qtdNum {
   font-size: 13px;
   font-weight: 700;
-  min-width: 18px;
+  max-width: 44px;
+  text-align: center;
   text-align: center;
 }

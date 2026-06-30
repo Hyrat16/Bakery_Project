@@ -1,10 +1,10 @@
-import type { Produto } from "../../../types";
+import type { Product } from "../../../types";
 import { useCategoriaEmoji } from "../../../hooks/useEmojis";
 import styles from "./index.module.css";
 
 interface ProdutoProps {
-  produto: Produto;
-  onSelect: (produto: Produto) => void;
+  produto: Product;
+  onSelect: (produto: Product) => void;
 }
 
 export const ProductCard = ({ produto, onSelect }: ProdutoProps) => {

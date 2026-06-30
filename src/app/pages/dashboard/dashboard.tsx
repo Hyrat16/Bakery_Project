@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CategoryList } from "../../shared/components/categories";
 import { ListProdutos } from "../../shared/components/listProducts";
-import { Buttons } from "../../shared/components/menuSale/buttons";
+import { SalesItens } from "../../shared/components/menuSale";
 import { useSalesItens } from "../../shared/hooks";
 import "./index.css";
 
@@ -47,27 +47,7 @@ export const Home = () => {
           <span className="badge-itens">{currentSalesList.length | 0}</span>
         </div>
 
-        <div className="carrinho-lista">
-          <div className="item-venda">
-            <div className="item-emoji">🥖</div>
-            <div className="item-info">
-              <div className="item-nome">Pão Francês</div>
-              <div className="item-unit">R$ 0,75 / un</div>
-            </div>
-            <Buttons valueItens={5} />
-            <div className="item-total">R$ 4,50</div>
-          </div>
-
-          <div className="item-venda">
-            <div className="item-emoji">🥖</div>
-            <div className="item-info">
-              <div className="item-nome">Pão Francês</div>
-              <div className="item-unit">R$ 0,75 / un</div>
-            </div>
-            <Buttons valueItens={5} />
-            <div className="item-total">R$ 4,50</div>
-          </div>
-        </div>
+        <div className="carrinho-lista">{<SalesItens />}</div>
 
         <div className="resumo">
           <div className="resumo-linha">

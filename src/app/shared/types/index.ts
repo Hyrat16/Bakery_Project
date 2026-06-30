@@ -1,4 +1,4 @@
-export interface Produto {
+export interface Product {
   id: string | number;
   nome: string;
   categoria: string;
@@ -9,19 +9,20 @@ export interface Produto {
 }
 
 export interface ProductContextType {
-  produto: Produto[];
+  produto: Product[];
   loading: boolean;
   erro: string | null;
   refetch: () => void;
 }
 
-export interface ProductCart extends Produto {
+export interface ProductCart extends Product {
   quantidade: number;
 }
 
 export interface CartContextType {
   currentSalesList: ProductCart[];
-  handleAdicionarProduto: (produto: Produto) => void;
-  removerProduto: (id: Produto["id"]) => void;
+  handleAdicionarProduto: (produto: Product) => void;
+  removerProduto: (id: Product["id"]) => void;
   limparCarrinho: () => void;
+  updateItem: (id: Product["id"], newQuantity: number) => void;
 }
