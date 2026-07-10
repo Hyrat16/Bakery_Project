@@ -1,28 +1,30 @@
 export interface Product {
   id: string | number;
-  nome: string;
-  categoria: string;
-  estoque: number;
-  unidade: string;
-  valorUn: string;
+  name: string;
+  category: string;
+  stock: number;
+  unit: string;
+  unitValue: string;
   emoji: string;
+  valueTotal?: string | number;
 }
 
 export interface ProductContextType {
-  produto: Product[];
+  products: Product[];
   loading: boolean;
-  erro: string | null;
+  error: string | null;
   refetch: () => void;
 }
 
 export interface ProductCart extends Product {
-  quantidade: number;
+  quantity: number;
 }
 
 export interface CartContextType {
   currentSalesList: ProductCart[];
-  handleAdicionarProduto: (produto: Product) => void;
-  removerProduto: (id: Product["id"]) => void;
-  limparCarrinho: () => void;
+  handleAddProduct: (product: Product) => void;
+  adjustItemQuantity: (id: Product["id"]) => void;
+  clearCart: () => void;
   updateItem: (id: Product["id"], newQuantity: number) => void;
+  removeItem: (id: Product["id"]) => void;
 }

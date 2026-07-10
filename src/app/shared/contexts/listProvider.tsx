@@ -8,15 +8,15 @@ interface provProdProps {
 }
 
 export const ListProdProvider = ({ children }: provProdProps) => {
-  const [produtos, setProdutos] = useState<Product[]>(listProducts);
+  const [products, setProductss] = useState<Product[]>(listProducts);
   const [loading] = useState(false);
-  const [erro] = useState<string | null>(null);
+  const [error] = useState<string | null>(null);
 
-  const refetch = () => setProdutos(listProducts);
+  const refetch = () => setProductss(listProducts);
 
   return (
     <ListProdContext.Provider
-      value={{ produto: produtos, loading, erro, refetch }}
+      value={{ products: products, loading, error, refetch }}
     >
       {children}
     </ListProdContext.Provider>

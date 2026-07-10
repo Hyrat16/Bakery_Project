@@ -1,39 +1,38 @@
-import { useProducts } from "../../hooks";
-import { type Product } from "../../types";
-import { ProductCard } from "./productCard";
-import { useSalesItens } from "../../hooks";
+import { useProducts, useSalesItens } from "../../hooks";
+import { type ProductCart } from "../../types";
+import { ProductCardItem } from "./productCard";
 
-export interface ListagemProdutosProps {
-  categoriaAtiva: string;
-  produtoAtivo: string;
-  onSelecionarProduto?: (produto: Product) => void;
+export interface ProductListProps {
+  activeCategory: string;
+  activeProduct: string;
+  onSelectProduct?: (product: ProductCart) => void;
 }
 
-export const ListProdutos = ({
-  categoriaAtiva,
-  produtoAtivo,
-}: ListagemProdutosProps) => {
-  const { produto } = useProducts();
-  const { handleAdicionarProduto } = useSalesItens();
+export const ProductList = ({
+  activeCategory,
+  activeProduct,
+}: ProductListProps) => {
+  const { products } = useProducts();
+  const { handleAddProduct } = useSalesItens();
 
-  const produtosFiltrados = produto.filter((produto) => {
-    if (produtoAtivo.length !== 0) {
-      return produto.nome.toLowerCase().includes(produtoAtivo.toLowerCase());
+  const filteredProducts = products.filter((product) => {
+    if (activeProduct.length !== 0) {
+      return product.name.toLowerCase().includes(activeProduct.toLowerCase());
     }
-    if (categoriaAtiva === "Todos") {
+    if (activeCategory === "Todos") {
       return true;
     }
 
-    return produto.categoria === categoriaAtiva;
+    return product.category === activeCategory;
   });
 
   return (
     <>
-      {produtosFiltrados.map((produto) => (
-        <ProductCard
-          key={produto.id}
-          produto={produto}
-          onSelect={handleAdicionarProduto}
+      {filteredProducts.map((product) => (
+        <ProductCardItem
+          key={product.id}
+          product={product}
+          onSelect={handleAddProduct}
         />
       ))}
     </>

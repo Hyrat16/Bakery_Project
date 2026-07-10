@@ -21,7 +21,13 @@
 .qtdNum {
   font-size: 13px;
   font-weight: 700;
-  max-width: 44px;
+  max-width: 80px;
   text-align: center;
   text-align: center;
+}
+
+.buttonRemove {
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
 }

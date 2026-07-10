@@ -1,39 +1,39 @@
 import type { Product } from "../../../types";
-import { useCategoriaEmoji } from "../../../hooks/useEmojis";
+//import { useCategoryEmoji } from "../../../hooks/useEmojis";
 import styles from "./index.module.css";
 
-interface ProdutoProps {
-  produto: Product;
-  onSelect: (produto: Product) => void;
+interface ProductCardProps {
+  product: Product; // ✅
+  onSelect: (product: Product) => void; // ✅
 }
 
-export const ProductCard = ({ produto, onSelect }: ProdutoProps) => {
-  const { obterEmoji } = useCategoriaEmoji();
+export const ProductCardItem = ({ product, onSelect }: ProductCardProps) => {
+  //const { getEmoji } = useCategoryEmoji();
 
-  let classFinal = styles.produtoCard;
-  let classSpan = styles.prodEstoqueBadge;
+  let cardClass = styles.productCard;
+  let badgeClass = styles.stockBadge;
 
-  if (produto.estoque === 0) {
-    classFinal += ` ${styles.produtoCardSemEstoque} `;
+  if (product.stock === 0) {
+    cardClass += ` ${styles.productCardOutOfStock}`;
   }
 
-  if (produto.estoque <= 10) {
-    classSpan += ` ${styles.prodEstoqueBadgeBaixo} `;
+  if (product.stock <= 10) {
+    badgeClass += ` ${styles.stockBadgeLow}`;
   }
 
   const handleClick = () => {
-    if (produto.estoque === 0) return;
-    onSelect(produto);
+    if (product.stock === 0) return;
+    onSelect(product);
   };
 
   return (
-    <div className={classFinal} onClick={() => handleClick()}>
-      <span className={classSpan}>
-        {produto.estoque} {produto.unidade}
+    <div className={cardClass} onClick={handleClick}>
+      <span className={badgeClass}>
+        {product.stock} {product.unit}
       </span>
-      <div className={styles.prodEmoji}>{obterEmoji(produto.categoria)}</div>
-      <div className={styles.prodNome}>{produto.nome}</div>
-      <div className={styles.prodPreco}>R$ {produto.valorUn}</div>
+      <div className={styles.productEmoji}>{product.emoji}</div>
+      <div className={styles.productName}>{product.name}</div>
+      <div className={styles.productPrice}>R$ {product.unitValue}</div>
     </div>
   );
 };

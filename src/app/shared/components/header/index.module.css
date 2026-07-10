@@ -20,24 +20,24 @@
   color: var(--gold);
   cursor: pointer;
 }
-.topbarTag {
+.topBarTag {
   font-size: 11px;
   background: var(--brown-md);
   color: var(--gold-lt);
   padding: 3px 10px;
   border-radius: 20px;
 }
-.topbarRight {
+.topBarRight {
   display: flex;
   align-items: center;
   gap: 18px;
   font-size: 13px;
   color: #c8b49a;
 }
-.topbarRight span b {
+.topBarRight span b {
   color: #fff;
 }
-.btnFechar {
+.closeButton {
   background: var(--red);
   color: #fff;
   border: none;

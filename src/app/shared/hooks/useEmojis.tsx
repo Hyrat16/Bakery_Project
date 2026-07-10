@@ -1,14 +1,14 @@
-export const useCategoriaEmoji = () => {
-  const mapaEmojis: Record<string, string> = {
+/* export const useCategoryEmoji = () => {
+  const mapEmojis: Record<string, string> = {
     Paes: "🍞",
     Salgados: "🥐",
     Doces: "🍰",
     Bebidas: "🥤",
   };
 
-  const obterEmoji = (categoria: string): string => {
-    return mapaEmojis[categoria] || "🛍️";
+  const getEmoji = (category: string): string => {
+    return mapEmojis[category] || "🛍️";
   };
 
-  return { obterEmoji };
-};
+  return { getEmoji };
+}; */

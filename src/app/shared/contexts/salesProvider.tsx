@@ -9,29 +9,48 @@ interface ProductProps {
 export const SalesItensProvider = ({ children }: ProductProps) => {
   const [currentSalesList, setcurrentSalesList] = useState<ProductCart[]>([]);
 
-  const handleAdicionarProduto = (produto: Product) => {
+  const handleAddProduct = (product: Product) => {
     setcurrentSalesList((prev) => {
-      const jaExiste = prev.find((p) => p.id === produto.id);
+      const alreadyExists = prev.find((p) => p.id === product.id);
 
-      if (jaExiste) {
+      if (alreadyExists) {
         return prev.map((p) =>
-          p.id === produto.id ? { ...p, quantidade: p.quantidade + 1 } : p,
+          p.id === product.id
+            ? ({
+                ...p,
+                quantity: p.quantity + 1,
+                valueTotal: Number(p.unitValue) * (p.quantity + 1),
+              } as ProductCart)
+            : p,
         );
       }
 
-      return [...prev, { ...produto, quantidade: 1 }];
+      return [
+        ...prev,
+        {
+          ...product,
+          quantity: 1,
+          valueTotal: Number(product.unitValue) * 1,
+        } as ProductCart,
+      ];
     });
   };
 
-  const removerProduto = (id: Product["id"]) => {
+  const adjustItemQuantity = (id: Product["id"]) => {
     setcurrentSalesList((prev) => {
       const item = prev.find((p) => p.id === id);
 
       if (!item) return prev;
 
-      if (item.quantidade > 1) {
+      if (item.quantity > 1) {
         return prev.map((p) =>
-          p.id === id ? { ...p, quantidade: p.quantidade - 1 } : p,
+          p.id === id
+            ? ({
+                ...p,
+                quantity: p.quantity - 1,
+                valueTotal: Number(p.unitValue) * p.quantity,
+              } as ProductCart)
+            : p,
         );
       }
 
@@ -41,20 +60,39 @@ export const SalesItensProvider = ({ children }: ProductProps) => {
 
   const updateItem = (id: Product["id"], newQuantity: number) => {
     setcurrentSalesList((prev) =>
-      prev.map((p) => (p.id === id ? { ...p, quantidade: newQuantity } : p)),
+      prev.map((p) => {
+        if (p.id !== id) return p;
+        return {
+          ...p,
+          quantity: newQuantity,
+          stock: p.stock - p.quantity,
+          valueTotal: Number(p.unitValue) * p.quantity,
+        } as ProductCart;
+      }),
     );
   };
 
-  const limparCarrinho = () => setcurrentSalesList([]);
+  const removeItem = (id: Product["id"]) => {
+    setcurrentSalesList((prev) => {
+      const item = prev.find((p) => p.id === id);
+
+      if (!item) return prev;
+
+      return prev.filter((p) => p.id !== id);
+    });
+  };
+
+  const clearCart = () => setcurrentSalesList([]);
 
   return (
     <SalesItenscontext.Provider
       value={{
         currentSalesList,
-        handleAdicionarProduto,
-        removerProduto,
-        limparCarrinho,
+        handleAddProduct,
+        adjustItemQuantity,
+        clearCart,
         updateItem,
+        removeItem,
       }}
     >
       {children}

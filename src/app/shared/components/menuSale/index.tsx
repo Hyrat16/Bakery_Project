@@ -1,4 +1,4 @@
-import { CardSaleItem } from "./cardSalemItem";
+import { CardSaleItem } from "./cardSalemItem/cardSalemItem";
 import { useSalesItens } from "../../hooks";
 
 export const SalesItens = () => {

@@ -1,0 +1,90 @@
+.payment {
+  padding: 12px 18px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.paymentLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-sub);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.paymentMethods {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.paymentMethod {
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 6px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-sub);
+  background: var(--cream);
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.paymentMethod span {
+  font-size: 16px;
+}
+.paymentMethod.active {
+  border-color: var(--green);
+  background: #edf5f0;
+  color: var(--green);
+}
+
+.changeRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.changeInput {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  color: var(--text-main);
+  background: var(--cream);
+  outline: none;
+}
+.changeResult {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--green);
+  white-space: nowrap;
+}
+
+.checkoutButton {
+  background: var(--brown-dk);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-family: "Fraunces", serif;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 14px;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.checkoutButton:hover {
+  background: var(--brown-md);
+}
+.checkoutButton span {
+  font-size: 18px;
+}

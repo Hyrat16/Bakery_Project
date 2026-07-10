@@ -2,23 +2,23 @@ import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
-export function useClock(formatRelogio: string) {
-  const [horaAtual, setHoraAtual] = useState("");
+export function useClock(clockFormat: string) {
+  const [currentTime, setcurrentTime] = useState("");
 
   useEffect(() => {
-    const atualizarHora = () => {
-      const horaFormatada = format(new Date(), formatRelogio, {
+    const updateTime = () => {
+      const formattedTime = format(new Date(), clockFormat, {
         locale: ptBR,
       });
-      setHoraAtual(horaFormatada);
+      setcurrentTime(formattedTime);
     };
 
-    atualizarHora();
+    updateTime();
 
-    const intervalo = setInterval(atualizarHora, 1000);
+    const interval = setInterval(updateTime, 1000);
 
-    return () => clearInterval(intervalo);
-  }, [formatRelogio]);
+    return () => clearInterval(interval);
+  }, [clockFormat]);
 
-  return horaAtual;
+  return currentTime;
 }

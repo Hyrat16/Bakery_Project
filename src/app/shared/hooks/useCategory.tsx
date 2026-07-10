@@ -1,12 +1,9 @@
 import { listProducts } from "../../data/dataProds";
 
 export const useCategory = () => {
-  const listCategories = listProducts.map((categories) => {
-    const value = categories.categoria;
-    return value;
-  });
+  const listCategories = listProducts
+    .map((product) => product.category?.trim())
+    .filter(Boolean);
 
-  const arrayCategoriesValue = ["Todos"].concat([...new Set(listCategories)]);
-
-  return arrayCategoriesValue;
+  return ["Todos", ...new Set(listCategories)];
 };

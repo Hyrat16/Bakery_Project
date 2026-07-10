@@ -1,0 +1,33 @@
+.saleItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+}
+.itemEmoji {
+  font-size: 15px;
+  flex-shrink: 0;
+}
+.itemInfo {
+  flex: 1;
+}
+.itemName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+.itemUnit {
+  font-size: 11px;
+  color: var(--text-sub);
+}
+
+.itemTotal {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--brown-dk);
+  min-width: 52px;
+  text-align: right;
+}

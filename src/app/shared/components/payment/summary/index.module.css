@@ -1,0 +1,23 @@
+/* ── SUMMARY ── */
+.summary {
+  border-top: 1px solid var(--border);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-sub);
+}
+.summaryTotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--brown-dk);
+  margin-top: 4px;
+  font-family: "Fraunces", serif;
+}
