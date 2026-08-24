@@ -3,8 +3,8 @@ import type { Product } from "../../../types";
 import styles from "./index.module.css";
 
 interface ProductCardProps {
-  product: Product; // ✅
-  onSelect: (product: Product) => void; // ✅
+  product: Product; 
+  onSelect: (product: Product) => void; 
 }
 
 export const ProductCardItem = ({ product, onSelect }: ProductCardProps) => {

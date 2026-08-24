@@ -6,7 +6,7 @@ export interface Product {
   unit: string;
   unitValue: string;
   emoji: string;
-  valueTotal?: string | number;
+  valueTotal?: number;
 }
 
 export interface ProductContextType {

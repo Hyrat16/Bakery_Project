@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { type IsaleData } from "../../shared/components/payment/summary/index.tsx";
 import { CategoryList } from "../../shared/components/categories";
 import { ProductList } from "../../shared/components/listProducts";
 import { SalesItens } from "../../shared/components/menuSale";
@@ -11,6 +12,12 @@ export const Home = () => {
   const [activeCategory, setActiveCategory] = useState<string>("Todos");
   const [activeProduct, setActiveProduct] = useState<string>("");
   const { currentSalesList, handleAddProduct } = useSalesItens();
+  const [saleData, setSaleData] = useState<IsaleData>({
+    subtotal: 0,
+    discount: 0,
+    total: 0,
+    isValid: true,
+  });
 
   return (
     <>
@@ -50,9 +57,9 @@ export const Home = () => {
           <SalesItens />
         </div>
 
-        {<Summary />}
+        <Summary onDataUpdated={setSaleData} />
 
-        {<Payment />}
+        <Payment currentSalesList={currentSalesList} data={saleData} />
       </aside>
     </>
   );

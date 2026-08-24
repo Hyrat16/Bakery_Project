@@ -3,19 +3,21 @@ import { useSalesItens } from "../../../hooks";
 import { useState, useEffect, useCallback } from "react";
 import { useFormatCurrency } from "../../../hooks/useFormatCurrency";
 
-export interface IDadosPedido {
+export interface IsaleData {
   subtotal: number;
-  discount: number;
+  discount?: number;
   total: number;
+  isValid: boolean;
+}
+export interface IResumoPedidoProps {
+  onDataUpdated?: (data: IsaleData) => void;
 }
 
-// tipagem das props do componente filho
-export interface IResumoPedidoProps {
-  onDadosAtualizados: (dados: IDadosPedido) => void;
-}
-export const Summary = ({ onDadosAtualizados }: IResumoPedidoProps) => {
+//
+export const Summary = ({ onDataUpdated }: IResumoPedidoProps) => {
   const { currentSalesList } = useSalesItens();
-  const [discount, setDiscount] = useState<number>(0);
+  //const [discount, setDiscount] = useState<number>();
+  const [discountText, setDiscountText] = useState<string>("");
   const formattedCurrency = useFormatCurrency();
 
   const numbersCurrentList = currentSalesList
@@ -30,43 +32,48 @@ export const Summary = ({ onDadosAtualizados }: IResumoPedidoProps) => {
   const capturingDiscountValueChange = (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    setDiscount(Number(e.target.value));
+    const text = e.target.value;
+
+    if (/^\d*,?\d*$/.test(text)) {
+      setDiscountText(text);
+    }
   };
 
+  const discount: number | undefined =
+    discountText === "" ? undefined : Number(discountText.replace(",", "."));
+
   const totalPurchaseAmount = useCallback((): number => {
-    if (numbersCurrentList == undefined) return 0;
-    if (discount > Number(numbersCurrentList)) return 0;
-    return Number(numbersCurrentList) - discount;
+    const effectiveDiscount = discount ?? 0;
+    return Number(numbersCurrentList) - effectiveDiscount;
   }, [numbersCurrentList, discount]);
 
+  const discountError =
+    discount !== undefined && discount > Number(numbersCurrentList)
+      ? "Verifique o desconto!"
+      : null;
+
   useEffect(() => {
-    const dados: IDadosPedido = {
+    const dataUpt: IsaleData = {
       subtotal: Number(numbersCurrentList),
       discount,
       total: totalPurchaseAmount(),
+      isValid: discountError === null,
     };
 
-    onDadosAtualizados(dados);
-  }, [discount, numbersCurrentList, onDadosAtualizados, totalPurchaseAmount]);
-
-  /* const valueFullCurrency = numbersCurrentList.reduce((ac, num) => {
-    if (ac == undefined || num == undefined) {
-      return 0;
-    }
-    return Number(ac) + Number(num);
-  }, 0); 
-
-  const formatCurrency = new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(Number(numbersCurrentList)); */
+    onDataUpdated?.(dataUpt);
+  }, [
+    discount,
+    numbersCurrentList,
+    totalPurchaseAmount,
+    onDataUpdated,
+    discountError,
+  ]);
 
   return (
     <>
       <div className={styles.summary}>
         <div className={styles.summaryRow}>
           <span>Subtotal</span>
-
           <span>{formattedCurrency(Number(numbersCurrentList))}</span>
         </div>
         <div className={styles.summaryRow}>
@@ -74,6 +81,7 @@ export const Summary = ({ onDadosAtualizados }: IResumoPedidoProps) => {
           <input
             type="text"
             placeholder="Desconto"
+            value={discountText}
             onChange={capturingDiscountValueChange}
           />
         </div>
@@ -81,8 +89,10 @@ export const Summary = ({ onDadosAtualizados }: IResumoPedidoProps) => {
           <span>Total</span>
           <span>{formattedCurrency(totalPurchaseAmount())}</span>
         </div>
+        {discountError && (
+          <div className={styles.summaryTotal}>{discountError}</div>
+        )}
       </div>
-      ;
     </>
   );
 };

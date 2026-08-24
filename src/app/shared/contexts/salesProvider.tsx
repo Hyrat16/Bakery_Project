@@ -65,8 +65,8 @@ export const SalesItensProvider = ({ children }: ProductProps) => {
         return {
           ...p,
           quantity: newQuantity,
-          stock: p.stock - p.quantity,
-          valueTotal: Number(p.unitValue) * p.quantity,
+          stock: p.stock - (newQuantity - p.quantity),
+          valueTotal: Number(p.unitValue) * newQuantity,
         } as ProductCart;
       }),
     );

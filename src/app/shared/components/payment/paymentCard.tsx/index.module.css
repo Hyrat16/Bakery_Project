@@ -51,16 +51,17 @@
   flex: 1;
   border: 1.5px solid var(--border);
   border-radius: 8px;
-  padding: 8px 12px;
+  padding: 8px 10px;
   font-family: "DM Sans", sans-serif;
   font-size: 13px;
   color: var(--text-main);
   background: var(--cream);
   outline: none;
+  width: 50px;
 }
 .changeResult {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--green);
   white-space: nowrap;
 }
@@ -87,4 +88,11 @@
 }
 .checkoutButton span {
   font-size: 18px;
+}
+
+.checkoutButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: #a0a0a0;
+  pointer-events: none;
 }

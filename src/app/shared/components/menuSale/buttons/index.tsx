@@ -1,4 +1,6 @@
+//import { useState } from "react";
 import styles from "./index.module.css";
+//import { useSalesItens } from "../../../hooks";
 //import { type Product } from "../../../types";
 
 interface NumPros {
@@ -12,6 +14,7 @@ export const Buttons = ({
   onQuantityChange,
   onRemove,
 }: NumPros) => {
+  //const { updateItem } = useSalesItens();
   return (
     <div className={styles.itemQtd}>
       <button className={styles.buttonRemove} onClick={onRemove}>
@@ -22,6 +25,7 @@ export const Buttons = ({
         type="number"
         value={valueItens}
         onChange={(e) => onQuantityChange(Number(e.target.value))}
+        //onChange={(e) => setAlt(e)}
       />
     </div>
   );

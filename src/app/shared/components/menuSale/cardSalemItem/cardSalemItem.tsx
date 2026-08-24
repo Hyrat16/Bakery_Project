@@ -30,9 +30,9 @@ export const CardSaleItem = ({ prods }: Product) => {
           onQuantityChange={(newQtd) => {
             if (newQtd < 0) {
               removeItem(prods.id);
-            } else {
-              updateItem(prods.id, newQtd);
+              return;
             }
+            updateItem(prods.id, newQtd);
           }}
           valueItens={prods.quantity}
           onRemove={() => removeItem(prods.id)}
